@@ -1,27 +1,39 @@
 -- Creacion de Tablas --
 
+DROP TABLE movimientos;
+DROP TABLE pqrs;
+DROP TABLE titulares;
+DROP TABLE cuentas;
+DROP TABLE oficinas;
+DROP TABLE clientes;
+
+
 CREATE TABLE clientes(
-    codigoCLiente NUMBER (3,0) NOT NULL,
-    nombreCLiente VARCHAR2 (60) NOT NULL,
+    codigoCliente NUMBER (3,0) NOT NULL,
+    nombreCliente VARCHAR2 (60) NOT NULL,
     apellidoCliente VARCHAR2 (60) NOT NULL,
     fechaNacimiento DATE NOT NULL,
     fechaPrimeraVinculacion DATE,
-    email VARCHAR2(60) NOT NULL,  --TODO: REGEXP_LIKE Para Emails validos
-    genero CHAR(1) CHECK('F' OR 'M') NOT NULL,
-    PRIMARY KEY(codigoCLiente)
+    email VARCHAR2(60) NOT NULL, 
+    CHECK( email = REGEXP_LIKE(email,"^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$",'c')), 
+    genero CHAR(1) NOT NULL,
+    CHECK(genero = 'F'||'M'),
+    PRIMARY KEY(codigoCliente)
 );
 
 CREATE TABLE oficinas(
     codigoOficina NUMBER(30) NOT NULL,
     nombre VARCHAR2(60) NOT NULL,
     presupuesto NUMBER(20,2) NOT NULL,
-    horarioAdicional CHAR(1) CHECK ('S' OR 'N') NOT NULL,
+    horarioAdicional CHAR(1) NOT NULL,
+    CHECK (horarioAdicional = 'S' || 'N'),
     PRIMARY KEY(codigoOficina)
 );
 
 CREATE TABLE cuentas(
     numeroCuenta NUMBER(3,0) NOT NULL,
-    tipo CHAR(1) CHECK('A' OR 'C') NOT NULL,
+    tipo CHAR(1) NOT NULL
+    CHECK(tipo 'A' || 'C'),
     codigoOficina NUMBER(3,0) NOT NULL,
     saldo NUMBER(20,0) DEFAULT NULL,
     PRIMARY KEY(numeroCuenta),
@@ -29,28 +41,31 @@ CREATE TABLE cuentas(
 );
 
 CREATE TABLE titulares(
-    codigoCLiente NUMBER(3,0) NOT NULL,
+    codigoCliente NUMBER(3,0) NOT NULL,
     numeroCuenta NUMBER(3,0) NOT NULL,
     porcentajeTitularidad NUMBER(3,0) NOT NULL,
-    PRIMARY KEY(codigoCLiente,numeroCuenta),
-    FOREIGN KEY(codigoCLiente) REFERENCES clientes,
+    PRIMARY KEY(codigoCliente,numeroCuenta),
+    FOREIGN KEY(codigoCliente) REFERENCES clientes,
     FOREIGN KEY(numeroCuenta) REFERENCES cuentas
 );
 
 CREATE TABLE pqrs(
-    codigoCLiente NUMBER(3,0) NOT NULL,
+    codigoCliente NUMBER(3,0) NOT NULL,
     numero NUMBER(2,0) NOT NULL, 
-    tipoQueja CHAR(1) CHECK('P' OR 'Q' OR 'R' OR 'S') NOT NULL,
+    tipoQueja CHAR(1) NOT NULL,
+    CHECK(tipoQueja = 'P' || 'Q' || 'R' || 'S'),
     descripcion VARCHAR2(2000) NOT NULL,
-    PRIMARY KEY(codigoCLiente, numero),
-    FOREIGN KEY(codigoCLiente) REFERENCES clientes
+    PRIMARY KEY(codigoCliente, numero),
+    FOREIGN KEY(codigoCliente) REFERENCES clientes
 );
 
 CREATE TABLE movimientos(
     numeroCuenta NUMBER(3,0) NOT NULL,
     numero NUMBER(3,0) NOT NULL,
-    tipo CHAR(1) CHECK('D' OR 'C' OR 'I' OR 'R') NOT NULL,
-    naturaleza CHAR(1) CHECK('A' OR 'U') NOT NULL,
+    tipo CHAR(1) NOT NULL,
+    CHECK(tipo ='D' || 'C' || 'I' || 'R'),
+    naturaleza CHAR(1) NOT NULL, 
+    CHECK( naturaleza ='A' || 'U'),
     valor NUMBER(10,2) NOT NULL,
     fechaMovimiento DATETIME NOT NULL,
     PRIMARY KEY(numeroCuenta,numero),
