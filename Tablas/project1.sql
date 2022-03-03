@@ -15,7 +15,7 @@ CREATE TABLE clientes(
     fechaNacimiento DATE NOT NULL,
     fechaPrimeraVinculacion DATE,
     email VARCHAR2(60) NOT NULL, 
-    CHECK( email = REGEXP_LIKE(email,"^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$",'c')), 
+    --CHECK( email = REGEXP_LIKE(email,'^[A-Za-z]+[A-Za-z0-9.]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$','c')), 
     genero CHAR(1) NOT NULL,
     CHECK(genero = 'F'||'M'),
     PRIMARY KEY(codigoCliente)
@@ -33,7 +33,7 @@ CREATE TABLE oficinas(
 CREATE TABLE cuentas(
     numeroCuenta NUMBER(3,0) NOT NULL,
     tipo CHAR(1) NOT NULL
-    CHECK(tipo 'A' || 'C'),
+    CHECK(tipo = 'A' || 'C'),
     codigoOficina NUMBER(3,0) NOT NULL,
     saldo NUMBER(20,0) DEFAULT NULL,
     PRIMARY KEY(numeroCuenta),
@@ -67,7 +67,7 @@ CREATE TABLE movimientos(
     naturaleza CHAR(1) NOT NULL, 
     CHECK( naturaleza ='A' || 'U'),
     valor NUMBER(10,2) NOT NULL,
-    fechaMovimiento DATETIME NOT NULL,
+    fechaMovimiento DATE NOT NULL, --TODO:TO_DATE('1998-DEC-25 17:30','YYYY-MON-DD HH24:MI','NLS_DATE_LANGUAGE=AMERICAN')
     PRIMARY KEY(numeroCuenta,numero),
     FOREIGN KEY(numeroCuenta) REFERENCES cuentas
 );
