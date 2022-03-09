@@ -1,4 +1,4 @@
--- Creacion de Tablas --
+-- Drop tables --
 
 DROP TABLE movimientos;
 DROP TABLE pqrs;
@@ -7,6 +7,7 @@ DROP TABLE cuentas;
 DROP TABLE oficinas;
 DROP TABLE clientes;
 
+-- Creacion de las tablas --
 
 CREATE TABLE clientes(
     codigoCliente NUMBER (3,0) NOT NULL,
@@ -17,8 +18,8 @@ CREATE TABLE clientes(
     email VARCHAR2(60) NOT NULL, 
     genero CHAR(1) NOT NULL,
 
-	CHECK(REGEXP_LIKE(email,'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$','cm')), 
-    CHECK(genero = 'F' || 'M'),
+	CHECK(REGEXP_LIKE(email, '[a-zA-Z\.\-\_0-9]+@(.[a-zA-Z0-9][a-zA-Z\_0-9]+)', 'c')), 
+    CHECK(genero IN ('M', 'F')),
     PRIMARY KEY(codigoCliente)
 );
 
@@ -28,7 +29,7 @@ CREATE TABLE oficinas(
     presupuesto NUMBER(20,2) NOT NULL,
     horarioAdicional CHAR(1) NOT NULL,
 
-    CHECK (horarioAdicional = 'S' || 'N'),
+    CHECK (horarioAdicional IN ('S', 'N')),
     PRIMARY KEY(codigoOficina)
 );
 
@@ -38,7 +39,7 @@ CREATE TABLE cuentas(
     codigoOficina NUMBER(3,0) NOT NULL,
     saldo NUMBER(20,0) DEFAULT NULL,
 
-	CHECK(tipo = 'A' || 'C'),
+	CHECK(tipo IN ('A', 'C')),
     PRIMARY KEY(numeroCuenta),
     FOREIGN KEY(codigoOficina) REFERENCES oficinas
 );
@@ -59,7 +60,7 @@ CREATE TABLE pqrs(
     tipoQueja CHAR(1) NOT NULL,
 	descripcion VARCHAR2(2000) NOT NULL,
 
-    CHECK(tipoQueja = 'P' || 'Q' || 'R' || 'S'),
+    CHECK(tipoQueja IN ('P', 'Q', 'R', 'S')),
     PRIMARY KEY(codigoCliente, numero),
     FOREIGN KEY(codigoCliente) REFERENCES clientes
 );
@@ -72,8 +73,8 @@ CREATE TABLE movimientos(
 	valor NUMBER(10,2) NOT NULL,
     fechaMovimiento DATE NOT NULL, 
 
-    CHECK(tipo = 'D' || 'C' || 'I' || 'R'),
-    CHECK( naturaleza = 'A' || 'U'),
+    CHECK(tipo IN ('D', 'C', 'I', 'R')),
+    CHECK( naturaleza IN ('A', 'U')),
 
     PRIMARY KEY(numeroCuenta,numero),
     FOREIGN KEY(numeroCuenta) REFERENCES cuentas
