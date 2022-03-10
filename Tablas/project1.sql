@@ -73,8 +73,8 @@ CREATE TABLE movimientos(
 	valor NUMBER(10,2) NOT NULL,
     fechaMovimiento DATE NOT NULL, 
 
-    CHECK(tipo IN ('D', 'C', 'I', 'R')),
-    CHECK( naturaleza IN ('A', 'U')),
+    CHECK(tipo IN ('D', 'R', 'C', 'I')),
+    CHECK(naturaleza IN ('A', 'U')),
 
     PRIMARY KEY(numeroCuenta,numero),
     FOREIGN KEY(numeroCuenta) REFERENCES cuentas

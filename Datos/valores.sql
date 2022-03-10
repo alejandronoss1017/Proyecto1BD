@@ -1,3 +1,6 @@
+-- Datos del enunciado --
+
+-- Clientes
 INSERT INTO clientes VALUES (1, 'Klementina', 'Cagua', TO_DATE('07-09-1993', 'dd-mm-yyyy'),TO_DATE('20-11-2005', 'dd-mm-yyyy'), 'klementina0678@gmail.com', 'F');
 INSERT INTO clientes VALUES (2, 'Anastasia', 'Robledo', TO_DATE('15-12-1990', 'dd-mm-yyyy'),TO_DATE('08-08-2008', 'dd-mm-yyyy'), 'Anastr1512@gmail.com', 'F');
 INSERT INTO clientes VALUES (3, 'Carlos', 'Maldonado', TO_DATE('10-01-1995', 'dd-mm-yyyy'),TO_DATE('31-01-2021', 'dd-mm-yyyy'), 'Maldonad0195@gmail.com', 'M');
@@ -11,13 +14,39 @@ INSERT INTO clientes VALUES (10, 'Julia', 'Mendez', TO_DATE('31-10-1990', 'dd-mm
 INSERT INTO clientes VALUES (11, 'Mateo', 'Garcia', TO_DATE('07-09-2001', 'dd-mm-yyyy'), NULL, 'mateoga0901@gmail.com', 'M');
 INSERT INTO clientes VALUES (12, 'Andrea', 'Ortega', TO_DATE('14-05-1982', 'dd-mm-yyyy'), NULL, 'andreita1415@gmail.com', 'F');
 
+-- Oficinas
 INSERT INTO oficinas VALUES (1, 'Oficina Norte', 27190210.00, 'N');
 INSERT INTO oficinas VALUES (2, 'Oficina Sur', 15000240.00, 'N');
 INSERT INTO oficinas VALUES (3, 'Oficina Este', 8510348.00, 'S');
 INSERT INTO oficinas VALUES (4, 'Oficina Oeste', 3258903.00, 'S');
 
+-- Cuentas
 INSERT INTO cuentas VALUES (134, 'A', 4, 0);
 INSERT INTO cuentas VALUES (135, 'C', 1, 0);
 INSERT INTO cuentas VALUES (136, 'C', 2, 0);
 INSERT INTO cuentas VALUES (137, 'A', 2, 0);
 INSERT INTO cuentas VALUES (138, 'C', 3, 0);
+
+-- Datos de prueba --
+
+-- Movimientos
+INSERT INTO movimientos VALUES(134, 1, 'D', 'U', 150000, TO_DATE('10-03-2022', 'dd-mm-yyyy'));
+INSERT INTO movimientos VALUES(134, 2, 'R', 'A', 50000, TO_DATE('10-03-2022', 'dd-mm-yyyy'));
+INSERT INTO movimientos VALUES(134, 3, 'C', 'U', 25000, TO_DATE('10-03-2022', 'dd-mm-yyyy'));
+INSERT INTO movimientos VALUES(134, 4, 'I', 'A', 5000, TO_DATE('10-03-2022', 'dd-mm-yyyy'));
+INSERT INTO movimientos VALUES(135, 1, 'D', 'U', 5000, TO_DATE('10-03-2022', 'dd-mm-yyyy'));
+INSERT INTO movimientos VALUES(135, 2, 'I', 'A', 1000, TO_DATE('10-03-2022', 'dd-mm-yyyy'));
+INSERT INTO movimientos VALUES(136, 1, 'D', 'A', 500, TO_DATE('10-03-2022', 'dd-mm-yyyy'));
+
+-- Titulares
+INSERT INTO titulares VALUES(1, 134, 80);
+INSERT INTO titulares VALUES(2, 134, 20);
+INSERT INTO titulares VALUES(3, 135, 100);
+INSERT INTO titulares VALUES(4, 136, 10);
+INSERT INTO titulares VALUES(5, 136, 10);
+INSERT INTO titulares VALUES(6, 136, 10);
+INSERT INTO titulares VALUES(7, 136, 10);
+INSERT INTO titulares VALUES(8, 136, 10);
+INSERT INTO titulares VALUES(9, 136, 40);
+INSERT INTO titulares VALUES(10, 136, 5);
+INSERT INTO titulares VALUES(11, 136, 5);
