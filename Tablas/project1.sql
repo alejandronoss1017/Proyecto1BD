@@ -71,7 +71,7 @@ CREATE TABLE movimientos(
     tipo CHAR(1) NOT NULL,
 	naturaleza CHAR(1) NOT NULL, 
 	valor NUMBER(10,2) NOT NULL,
-    fechaMovimiento DATE NOT NULL, 
+    fechaMovimiento TIMESTAMP NOT NULL, 
 
     CHECK(tipo IN ('D', 'R', 'C', 'I')),
     CHECK(naturaleza IN ('A', 'U')),

@@ -30,13 +30,13 @@ INSERT INTO cuentas VALUES (138, 'C', 3, 0);
 -- Datos de prueba --
 
 -- Movimientos
-INSERT INTO movimientos VALUES(134, 1, 'D', 'U', 150000, TO_DATE('10-03-2022', 'dd-mm-yyyy'));
-INSERT INTO movimientos VALUES(134, 2, 'R', 'A', 50000, TO_DATE('10-03-2022', 'dd-mm-yyyy'));
-INSERT INTO movimientos VALUES(134, 3, 'C', 'U', 25000, TO_DATE('10-03-2022', 'dd-mm-yyyy'));
-INSERT INTO movimientos VALUES(134, 4, 'I', 'A', 5000, TO_DATE('10-03-2022', 'dd-mm-yyyy'));
-INSERT INTO movimientos VALUES(135, 1, 'D', 'U', 5000, TO_DATE('10-03-2022', 'dd-mm-yyyy'));
-INSERT INTO movimientos VALUES(135, 2, 'I', 'A', 1000, TO_DATE('10-03-2022', 'dd-mm-yyyy'));
-INSERT INTO movimientos VALUES(136, 1, 'D', 'A', 500, TO_DATE('10-03-2022', 'dd-mm-yyyy'));
+INSERT INTO movimientos VALUES(134, 1, 'D', 'U', 150000, TO_TIMESTAMP('10-03-2022 12:12:21', 'dd-mm-yyyy HH24:MI:SS'));
+INSERT INTO movimientos VALUES(134, 2, 'R', 'A', 50000, TO_TIMESTAMP('09-03-2022 12:12:21', 'dd-mm-yyyy HH24:MI:SS'));
+INSERT INTO movimientos VALUES(134, 3, 'C', 'U', 25000, TO_TIMESTAMP('20-03-2022 12:12:21', 'dd-mm-yyyy HH24:MI:SS'));
+INSERT INTO movimientos VALUES(134, 4, 'I', 'A', 5000, TO_TIMESTAMP('10-03-2022 12:12:21', 'dd-mm-yyyy HH24:MI:SS'));
+INSERT INTO movimientos VALUES(135, 1, 'D', 'U', 5000, TO_TIMESTAMP('10-03-2022 12:12: 21', 'dd-mm-yyyy HH24:MI:SS'));
+INSERT INTO movimientos VALUES(135, 2, 'I', 'A', 1000, TO_TIMESTAMP('10-03-2022 12:12:21', 'dd-mm-yyyy HH24:MI:SS'));
+INSERT INTO movimientos VALUES(136, 1, 'D', 'A', 500, TO_TIMESTAMP('10-04-2022 12:12:21', 'dd-mm-yyyy HH24:MI:SS'));
 
 -- Titulares
 INSERT INTO titulares VALUES(1, 134, 80);
@@ -50,3 +50,6 @@ INSERT INTO titulares VALUES(8, 136, 10);
 INSERT INTO titulares VALUES(9, 136, 40);
 INSERT INTO titulares VALUES(10, 136, 5);
 INSERT INTO titulares VALUES(11, 136, 5);
+INSERT INTO titulares VALUES(1, 137, 80);
+INSERT INTO titulares VALUES(2, 137, 20);
+INSERT INTO titulares VALUES(2, 138, 100);
