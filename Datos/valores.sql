@@ -53,3 +53,6 @@ INSERT INTO titulares VALUES(11, 136, 5);
 INSERT INTO titulares VALUES(1, 137, 80);
 INSERT INTO titulares VALUES(2, 137, 20);
 INSERT INTO titulares VALUES(2, 138, 100);
+
+-- Confirmar los cambios
+COMMIT;

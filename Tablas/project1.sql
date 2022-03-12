@@ -18,7 +18,7 @@ CREATE TABLE clientes(
     email VARCHAR2(60) NOT NULL, 
     genero CHAR(1) NOT NULL,
 
-	CHECK(REGEXP_LIKE(email, '[a-zA-Z\.\-\_0-9]+@(.[a-zA-Z0-9][a-zA-Z\_0-9]+)', 'c')), 
+	CHECK(REGEXP_LIKE(email, '[a-zA-Z\.\-\_0-9]+@[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+', 'c')), 
     CHECK(genero IN ('M', 'F')),
     PRIMARY KEY(codigoCliente)
 );
@@ -50,7 +50,7 @@ CREATE TABLE titulares(
     porcentajeTitularidad NUMBER(3,0) NOT NULL,
 
     PRIMARY KEY(codigoCliente, numeroCuenta),
-    FOREIGN KEY(codigoCliente) REFERENCES clientes,
+    FOREIGN KEY(codigoCliente) REFERENCES clientes ON DELETE CASCADE,
     FOREIGN KEY(numeroCuenta) REFERENCES cuentas
 );
 
@@ -62,7 +62,7 @@ CREATE TABLE pqrs(
 
     CHECK(tipoQueja IN ('P', 'Q', 'R', 'S')),
     PRIMARY KEY(codigoCliente, numero),
-    FOREIGN KEY(codigoCliente) REFERENCES clientes
+    FOREIGN KEY(codigoCliente) REFERENCES clientes ON DELETE CASCADE
 );
 
 CREATE TABLE movimientos(
@@ -79,3 +79,5 @@ CREATE TABLE movimientos(
     PRIMARY KEY(numeroCuenta,numero),
     FOREIGN KEY(numeroCuenta) REFERENCES cuentas
 );
+
+COMMIT;
