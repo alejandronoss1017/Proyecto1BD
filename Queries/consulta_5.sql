@@ -1,25 +1,25 @@
-create or replace view estadisticaOficinas (
+-- Crear la vista
+CREATE OR replace VIEW estadisticaOficinas (
 oficina,
 presupuesto,
 "Numero de cuentas",
 "Saldo cuenta ahorros",
 "Saldo cuenta Corriente"
-)as
-Select  a.nombre, 
+) AS
+SELECT  a.nombre, 
         a.presupuesto,
-        Count(c.numeroCuenta),
-        Sum(decode(Tipo, 'A', saldo, 0)) Ahorros,
-        Sum(decode(Tipo, 'C', saldo, 0)) Corriente
-From oficinas a,
-     titulares b, 
-     cuentas c
-Where c.codigoOficina = a.codigoOficina
-And   b.numeroCuenta = c.numeroCuenta
-Group by  a.nombre, a.presupuesto;
-/
+        COUNT(c.numeroCuenta),
+        SUM(DECODE(Tipo, 'A', saldo, 0)) Ahorros,
+        SUM(DECODE(Tipo, 'C', saldo, 0)) Corriente
+FROM 	oficinas A,
+     	titulares B, 
+     	cuentas C
+WHERE	c.codigoOficina = a.codigoOficina
+		AND b.numeroCuenta = c.numeroCuenta
+GROUP BY a.nombre, a.presupuesto;
 
-grant select on estadisticaOficinas to dba  ; 
+-- Dar permisos
+GRANT SELECT ON estadisticaOficinas TO dba  ; 
 
-
-select  *
-from estadisticaOficinas;
+-- Ver la vista
+SELECT * FROM estadisticaOficinas;

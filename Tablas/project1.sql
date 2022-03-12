@@ -79,3 +79,5 @@ CREATE TABLE movimientos(
     PRIMARY KEY(numeroCuenta,numero),
     FOREIGN KEY(numeroCuenta) REFERENCES cuentas
 );
+
+COMMIT;
