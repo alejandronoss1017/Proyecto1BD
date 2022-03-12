@@ -23,3 +23,5 @@ GRANT SELECT ON estadisticaOficinas TO dba  ;
 
 -- Ver la vista
 SELECT * FROM estadisticaOficinas;
+
+COMMIT;
